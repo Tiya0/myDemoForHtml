@@ -1,0 +1,99 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div id = "project-first">
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+
+<div class="form">
+    <label class="col-form-label">Label      </label>
+    <label class="col-form-label">key        </label>
+    <label class="col-form-label">value      </label>
+    <label class="col-form-label">placeholder</label>
+    <label class="col-form-label">required   </label>
+    <label class="col-form-label">readonly   </label>
+    <label class="col-form-label">disabled   </label>
+    <label class="col-form-label">type       </label>
+    <label class="col-form-label" style="margin-left: -30px">method     </label>
+    <label class="col-form-label" style="margin-right: 30px">listSource </label>
+    <label class="col-form-label" style="margin-right: 3.5%">listLabel  </label>
+    <label class="col-form-label">listValue  </label>
+
+    <div class="form-group form-group-sm" *ngFor="let i of subData;let ii = index;">
+
+    <input class="form-control" [(ngModel)]="i.label" value="{{i.label}}">
+    <input class="form-control" [(ngModel)]="i.key" value="{{i.key}}">
+    <input class="form-control" [(ngModel)]="i.value" value="{{i.value}}">
+    <input class="form-control" [(ngModel)]="i.placeholder" value="{{i.placeholder}}">
+    <!-- <select class="form-control" [(ngModel)]="i.require" style="width: 195px">
+    <option *ngFor="let item of require" [(value)]="item" >{{item}}</option>
+    </select> -->
+
+    <div class= "radio-control">
+      <ng-container *ngFor="let item of required;let j = index" value="i.required">  
+        <input 
+          [(ngModel)]="i.required"
+          required
+          name="{{ii}}"
+          type="radio"
+          value="{{item}}">{{item}}
+       </ng-container>
+    </div>
+
+    <div class= "radio-control">
+        <ng-container *ngFor="let item of readonly;let j = index" value="i.readonly">  
+          <input 
+            [(ngModel)]="i.readonly"
+            required
+            name="{{ii+1000}}"
+            type="radio"
+            value="{{item}}">{{item}}
+         </ng-container>
+      </div>
+
+      <div class= "radio-control">
+          <ng-container *ngFor="let item of disabled;let j = index" value="i.disabled">  
+            <input 
+              [(ngModel)]="i.disabled"
+              required
+              name="{{ii+2000}}"
+              type="radio"
+              value="{{item}}">{{item}}
+           </ng-container>
+        </div>
+    
+    <select class="form-control" [(ngModel)]="i.type" style="margin-left: 1.5%" (ngModelChange)="onSelect($event)" >
+    <option *ngFor="let item of type" [(value)]="item">{{item}}</option>
+    </select>
+
+        
+    <input class="form-control" [(ngModel)]="i.method" value="{{i.method}}">
+    <input class="form-control" [(ngModel)]="i.listSource" value="{{i.listSource}}">
+    <input class="form-control" [(ngModel)]="i.listLabel" value="{{i.listLabel}}">
+    <input class="form-control" [(ngModel)]="i.listValue" value="{{i.listValue}}">
+    
+    <div style="display: inline-block;width:10%" *ngIf="i.type == 'select'">
+        <label>multiple</label><br>
+       <div class= "radio-control" >
+          <ng-container *ngFor="let item of multiple;let j = index" value="i.multiple">  
+            <input 
+              [(ngModel)]="i.multiple"
+              required
+              name="{{ii+3000}}"
+              type="radio"
+              value="{{item}}">{{item}}
+           </ng-container>
+        </div>
+    </div>
+    
+    <button class="btn btn-link" (click)="removeInput(i)">Delete</button>
+    </div>
+
+    <button (click)="addInput()" [ngStyle]="{height: '31px',width: '100px',margin:'20px'}">Add</button>
+    <button (click)="submitData()" [ngStyle]="{height: '31px',width: '100px',margin:'20px'}">Submit</button>
+
+  </div>
+</div>
+
+<router-outlet></router-outlet>
